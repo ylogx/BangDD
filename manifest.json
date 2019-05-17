@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.mozilla.org/*"],
-      "js": ["banger.js"]
+      "js": ["bangdd.js"]
     }
   ]
 

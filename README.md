@@ -6,7 +6,7 @@
 
 This extension just includes:
 
-* a content script, "banger.js", that is injected into any pages
+* a content script, "bangdd.js", that is injected into any pages
 under "mozilla.org/" or any of its subdomains
 
 The content script draws a border around the document.body.
