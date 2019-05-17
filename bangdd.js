@@ -9,17 +9,31 @@ function onTimeToBang(event) {
     let current_search = search_form_input.value;
     let bang = bangToAdd();
 
-    console.log("Current search contains bang" + current_search.contains(bang));
-    if (!current_search.contains(bang)) {
+    if (!current_search.includes(bang)) {
         search_form_input.value = current_search + " " + bang;
     }
 }
 
+function createElementFromHTML(htmlString) {
+    var div = document.createElement('div');
+    div.innerHTML = htmlString.trim();
+
+    // Change this to div.childNodes to support multiple top-level nodes
+    return div.firstChild;
+}
+
 function createButton() {
-    let bang_it = document.createElement('a');
-    bang_it.href = '#';
-    bang_it.id = 'bang_it';
-    bang_it.appendChild(document.createTextNode("Bang It"));
+    let bang_it = createElementFromHTML(
+        '<li id="bang_it" class="zcm__item">' +
+        '<a data-zci-link="news" class="zcm__link  js-zci-link  js-zci-link--news" href="#">Bang It</a>' +
+        '</li>'
+    );
+
+    // let bang_it = document.createElement('a');
+    // bang_it.href = '#';
+    // bang_it.id = 'bang_it';
+    // bang_it.className = 'zcm__item';
+    // bang_it.appendChild(document.createTextNode("Bang It"));
 
     bang_it.addEventListener("click", function (event) {
         (onTimeToBang).call(bang_it, event);
@@ -40,7 +54,9 @@ function insertInCorrectPosition(bang_it) {
     // document.body.appendChild(bang_it);
     // let search_form = document.getElementById("search_form");
     // search_form.insertBefore(bang_it, document.getElementById("search_form_input"));
-    insertAfter(bang_it, document.getElementById("search_form"));
+
+    // insertAfter(bang_it, document.getElementById("search_form"));
+    insertAfter(bang_it, document.getElementById("duckbar_static").lastChild);
     console.log('Inserted bang it element');
 }
 
