@@ -32,7 +32,7 @@ function onTimeToBang(event) {
 function createButton() {
     let bang_it = createElementFromHTML(
         '<li id="bang_it" class="zcm__item">' +
-        '<a data-zci-link="bang_it" class="zcm__link  js-zci-link  js-zci-link--bang_it" href="#">Bang It</a>' +
+        '<a data-zci-link="bang_it" class="zcm__link  js-zci-link  js-zci-link--bang_it" href="#">Google</a>' +
         '</li>'
     );
 
