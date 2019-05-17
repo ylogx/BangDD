@@ -1,9 +1,11 @@
 const BANG_TO_ADD = "!g";
 
+/** Most recently used or most commonly used bangs will start appearing from here */
 function bangToAdd() {
     return BANG_TO_ADD
 }
 
+/** Main Action on button click */
 function onTimeToBang(event) {
     let search_form_input = document.getElementById("search_form_input");
     let current_search = search_form_input.value;
@@ -15,7 +17,7 @@ function onTimeToBang(event) {
 }
 
 function createElementFromHTML(htmlString) {
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     div.innerHTML = htmlString.trim();
 
     // Change this to div.childNodes to support multiple top-level nodes
@@ -28,12 +30,6 @@ function createButton() {
         '<a data-zci-link="news" class="zcm__link  js-zci-link  js-zci-link--news" href="#">Bang It</a>' +
         '</li>'
     );
-
-    // let bang_it = document.createElement('a');
-    // bang_it.href = '#';
-    // bang_it.id = 'bang_it';
-    // bang_it.className = 'zcm__item';
-    // bang_it.appendChild(document.createTextNode("Bang It"));
 
     bang_it.addEventListener("click", function (event) {
         (onTimeToBang).call(bang_it, event);
@@ -51,18 +47,10 @@ function insertInCorrectPosition(bang_it) {
         existingButton.remove();
         console.log('Removed existing button')
     }
-    // document.body.appendChild(bang_it);
-    // let search_form = document.getElementById("search_form");
-    // search_form.insertBefore(bang_it, document.getElementById("search_form_input"));
 
-    // insertAfter(bang_it, document.getElementById("search_form"));
     insertAfter(bang_it, document.getElementById("duckbar_static").lastChild);
     console.log('Inserted bang it element');
 }
 
-
 let bang_it = createButton();
 insertInCorrectPosition(bang_it);
-
-/* Just draw a border round the document.body. */
-document.body.style.border = "5px solid blue";
