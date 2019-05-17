@@ -1,8 +1,15 @@
+const ID_SEARCH_BUTTON = "search_button";
+
 const BANG_TO_ADD = "!g";
 
 /** Most recently used or most commonly used bangs will start appearing from here */
 function bangToAdd() {
     return BANG_TO_ADD
+}
+
+/** Allow user to configure */
+function haveToClickSearch() {
+    return true
 }
 
 /** Main Action on button click */
@@ -13,6 +20,9 @@ function onTimeToBang(event) {
 
     if (!current_search.includes(bang)) {
         search_form_input.value = current_search + " " + bang;
+    }
+    if (haveToClickSearch()) {
+        document.getElementById(ID_SEARCH_BUTTON).click();
     }
 }
 
