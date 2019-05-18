@@ -30,11 +30,11 @@ function onTimeToBang(event) {
 }
 
 function createButton() {
-    let bang_it = createElementFromHTML(
-        '<li id="bang_it" class="zcm__item">' +
+    let div = document.createElement('div');
+    div.innerHTML = '<li id="bang_it" class="zcm__item">' +
         '<a data-zci-link="bang_it" class="zcm__link  js-zci-link  js-zci-link--bang_it" href="#">Google</a>' +
-        '</li>'
-    );
+        '</li>';
+    let bang_it = div.firstChild;
 
     bang_it.addEventListener("click", function (event) {
         (onTimeToBang).call(bang_it, event);
@@ -54,14 +54,6 @@ function insertInCorrectPosition(bang_it) {
 }
 
 /* Helper Methods */
-function createElementFromHTML(htmlString) {
-    let div = document.createElement('div');
-    div.innerHTML = htmlString.trim();
-
-    // Change this to div.childNodes to support multiple top-level nodes
-    return div.firstChild;
-}
-
 function insertAfter(el, referenceNode) {
     referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
 }
