@@ -1,6 +1,6 @@
 const ID_SEARCH_FORM = "search_form_input";
 const ID_SEARCH_BUTTON = "search_button";
-const ID_DUCKBAR = "duckbar_static";
+const ID_DUCKBAR = "#react-duckbar ul";
 
 const BANG_TO_ADD = "!g";
 
@@ -49,7 +49,7 @@ function insertInCorrectPosition(bang_it) {
         console.log('Removed existing button')
     }
 
-    insertAfter(bang_it, document.getElementById(ID_DUCKBAR).lastChild);
+    insertAfter(bang_it, document.querySelector(ID_DUCKBAR).lastChild);
     console.log('Inserted bang it element');
 }
 
