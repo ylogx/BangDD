@@ -30,9 +30,9 @@ function onTimeToBang(event) {
 }
 
 function createButton() {
-    // Fetch class names from the last inactive item
+    // Fetch class names from the second-to-last inactive item, or the last if fewer than two items
     let existingLis = document.querySelectorAll(ID_DUCKBAR + ' li');
-    let existingLi = existingLis[existingLis.length - 2];
+    let existingLi = existingLis.length >= 2 ? existingLis[existingLis.length - 2] : existingLis[existingLis.length - 1];
     let existingA = existingLi.querySelector('a');
 
     let liClassNames = existingLi ? existingLi.className : '';
