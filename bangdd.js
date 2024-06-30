@@ -30,9 +30,10 @@ function onTimeToBang(event) {
 }
 
 function createButton() {
-    // Fetch class names from existing items
-    let existingLi = document.querySelector(ID_DUCKBAR + ' li');
-    let existingA = document.querySelector(ID_DUCKBAR + ' li a');
+    // Fetch class names from the last inactive item
+    let existingLis = document.querySelectorAll(ID_DUCKBAR + ' li');
+    let existingLi = existingLis[existingLis.length - 2];
+    let existingA = existingLi.querySelector('a');
 
     let liClassNames = existingLi ? existingLi.className : '';
     let aClassNames = existingA ? existingA.className : '';
