@@ -31,8 +31,8 @@ function onTimeToBang(event) {
 
 function createButton() {
     let div = document.createElement('div');
-    div.innerHTML = '<li id="bang_it" class="zcm__item">' +
-        '<a data-zci-link="bang_it" class="zcm__link  js-zci-link  js-zci-link--bang_it" href="#">Google</a>' +
+    div.innerHTML = '<li id="bang_it">' +
+        '<a href="#">Google</a>' +
         '</li>';
     let bang_it = div.firstChild;
 
