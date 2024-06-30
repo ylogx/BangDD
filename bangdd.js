@@ -6,12 +6,12 @@ const BANG_TO_ADD = "!g";
 
 /** Most recently used or most commonly used bangs will start appearing from here */
 function bangToAdd() {
-    return BANG_TO_ADD
+    return BANG_TO_ADD;
 }
 
 /** Allow user to configure */
 function haveToClickSearch() {
-    return true
+    return true;
 }
 
 /** Main Action on button click */
@@ -46,7 +46,7 @@ function insertInCorrectPosition(bang_it) {
     let existingButton = document.getElementById(bang_it.id);
     if (existingButton) {
         existingButton.remove();
-        console.log('Removed existing button')
+        console.log('Removed existing button');
     }
 
     insertAfter(bang_it, document.querySelector(ID_DUCKBAR).lastChild);
