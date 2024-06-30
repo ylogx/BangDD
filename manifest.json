@@ -3,7 +3,7 @@
   "description": "Adds a google bang in the duckduckgo search",
   "manifest_version": 3,
   "name": "BangDD",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage_url": "https://github.com/ylogx/BangDD",
   "icons": {
     "48": "icons/border-48.png"
