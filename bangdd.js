@@ -30,10 +30,17 @@ function onTimeToBang(event) {
 }
 
 function createButton() {
+    // Fetch class names from existing items
+    let existingLi = document.querySelector(ID_DUCKBAR + ' li');
+    let existingA = document.querySelector(ID_DUCKBAR + ' li a');
+
+    let liClassNames = existingLi ? existingLi.className : '';
+    let aClassNames = existingA ? existingA.className : '';
+
     let div = document.createElement('div');
-    div.innerHTML = '<li id="bang_it">' +
-        '<a href="#">Google</a>' +
-        '</li>';
+    div.innerHTML = `<li id="bang_it" class="${liClassNames}">
+                        <a href="#" class="${aClassNames}">Google</a>
+                    </li>`;
     let bang_it = div.firstChild;
 
     bang_it.addEventListener("click", function (event) {
