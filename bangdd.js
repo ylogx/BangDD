@@ -32,6 +32,11 @@ function onTimeToBang(event) {
 function createButton() {
     // Fetch class names from the second-to-last inactive item, or the last if fewer than two items
     let existingLis = document.querySelectorAll(ID_DUCKBAR + ' li');
+    console.log('existingLis:', existingLis); // Debugging statement
+    if (existingLis.length == 0) {
+        console.error('No existing li elements found');
+        return null;
+    }
     let existingLi = existingLis.length >= 2 ? existingLis[existingLis.length - 2] : existingLis[existingLis.length - 1];
     let existingA = existingLi.querySelector('a');
 
@@ -69,7 +74,11 @@ function insertAfter(el, referenceNode) {
 
 function onExtensionLoading() {
     let bang_it = createButton();
-    insertInCorrectPosition(bang_it);
+    if (bang_it) {
+        insertInCorrectPosition(bang_it);
+    }
 }
 
-onExtensionLoading();
+document.addEventListener('DOMContentLoaded', function() {
+    onExtensionLoading();
+});
