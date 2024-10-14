@@ -1,12 +1,14 @@
-const ID_SEARCH_FORM = "search_form_input";
-const ID_SEARCH_BUTTON = "search_button";
-const ID_DUCKBAR = "#react-duckbar ul";
-
-const BANG_TO_ADD = "!g";
+// Configuration Object
+const CONFIG = {
+    ID_SEARCH_FORM: "search_form_input",
+    ID_SEARCH_BUTTON: "search_button",
+    ID_DUCKBAR: "#react-duckbar ul",
+    BANG_TO_ADD: "!g"
+};
 
 /** Most recently used or most commonly used bangs will start appearing from here */
 function bangToAdd() {
-    return BANG_TO_ADD;
+    return CONFIG.BANG_TO_ADD;
 }
 
 /** Allow user to configure */
@@ -16,53 +18,49 @@ function haveToClickSearch() {
 
 /** Main Action on button click */
 function onTimeToBang(event) {
-    let search_form_input = document.getElementById(ID_SEARCH_FORM);
-    let current_search = search_form_input.value;
-    let bang = bangToAdd();
+    const searchFormInput = document.getElementById(CONFIG.ID_SEARCH_FORM);
+    const currentSearch = searchFormInput.value;
+    const bang = bangToAdd();
 
-    if (!current_search.includes(bang)) {
-        search_form_input.value = current_search + " " + bang;
+    if (!currentSearch.includes(bang)) {
+        searchFormInput.value = currentSearch + " " + bang;
     }
 
     if (haveToClickSearch()) {
-        document.getElementById(ID_SEARCH_BUTTON).click();
+        document.getElementById(CONFIG.ID_SEARCH_BUTTON).click();
     }
 }
 
 function createButton() {
-    // Fetch class names from the second-to-last inactive item, or the last if fewer than two items
-    let existingLis = document.querySelectorAll(ID_DUCKBAR + ' li');
-    console.log('existingLis:', existingLis); // Debugging statement
-    if (existingLis.length == 0) {
+    const existingLis = document.querySelectorAll(CONFIG.ID_DUCKBAR + ' li');
+    if (existingLis.length === 0) {
         console.error('No existing li elements found');
         return null;
     }
-    let existingLi = existingLis.length >= 2 ? existingLis[existingLis.length - 2] : existingLis[existingLis.length - 1];
-    let existingA = existingLi.querySelector('a');
+    const existingLi = existingLis.length >= 2 ? existingLis[existingLis.length - 2] : existingLis[existingLis.length - 1];
+    const existingA = existingLi.querySelector('a');
 
-    let liClassNames = existingLi ? existingLi.className : '';
-    let aClassNames = existingA ? existingA.className : '';
+    const liClassNames = existingLi ? existingLi.className : '';
+    const aClassNames = existingA ? existingA.className : '';
 
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.innerHTML = `<li id="bang_it" class="${liClassNames}">
                         <a href="#" class="${aClassNames}">Google</a>
                     </li>`;
-    let bang_it = div.firstChild;
+    const bang_it = div.firstChild;
 
-    bang_it.addEventListener("click", function (event) {
-        (onTimeToBang).call(bang_it, event);
-    });
+    bang_it.addEventListener("click", (event) => onTimeToBang(event));
     return bang_it;
 }
 
 function insertInCorrectPosition(bang_it) {
-    let existingButton = document.getElementById(bang_it.id);
+    const existingButton = document.getElementById(bang_it.id);
     if (existingButton) {
         existingButton.remove();
         console.log('Removed existing button');
     }
 
-    insertAfter(bang_it, document.querySelector(ID_DUCKBAR).lastChild);
+    insertAfter(bang_it, document.querySelector(CONFIG.ID_DUCKBAR).lastChild);
     console.log('Inserted bang it element');
 }
 
@@ -73,12 +71,10 @@ function insertAfter(el, referenceNode) {
 /* End of helper methods */
 
 function onExtensionLoading() {
-    let bang_it = createButton();
+    const bang_it = createButton();
     if (bang_it) {
         insertInCorrectPosition(bang_it);
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    onExtensionLoading();
-});
+document.addEventListener('DOMContentLoaded', onExtensionLoading);
