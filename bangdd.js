@@ -78,3 +78,4 @@ function onExtensionLoading() {
 }
 
 document.addEventListener('DOMContentLoaded', onExtensionLoading);
+onExtensionLoading();
