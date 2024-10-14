@@ -71,6 +71,9 @@ function insertAfter(el, referenceNode) {
 /* End of helper methods */
 
 function onExtensionLoading() {
+    if (document.getElementById('bang_it')) {
+        return;
+    }
     const bang_it = createButton();
     if (bang_it) {
         insertInCorrectPosition(bang_it);
@@ -79,3 +82,7 @@ function onExtensionLoading() {
 
 document.addEventListener('DOMContentLoaded', onExtensionLoading);
 onExtensionLoading();
+
+// Run onExtensionLoading() after 1 seconds to ensure that the page has loaded completely
+setTimeout(onExtensionLoading, 1000);
+setTimeout(onExtensionLoading, 5000);
