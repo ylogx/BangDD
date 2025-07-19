@@ -1,7 +1,7 @@
 // Configuration Object
 const CONFIG = {
     ID_SEARCH_FORM: "search_form_input",
-    ID_SEARCH_BUTTON: "search_button",
+    ID_SEARCH_BUTTON: "#react-search-form button[type='submit']",
     ID_DUCKBAR: "#react-duckbar ul",
     BANG_TO_ADD: "!g"
 };
@@ -27,7 +27,8 @@ function onTimeToBang(event) {
     }
 
     if (haveToClickSearch()) {
-        document.getElementById(CONFIG.ID_SEARCH_BUTTON).click();
+        //document.getElementById(CONFIG.ID_SEARCH_BUTTON).click();
+        document.querySelector(CONFIG.ID_SEARCH_BUTTON).click();
     }
 }
 
