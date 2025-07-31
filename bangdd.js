@@ -27,7 +27,6 @@ function onTimeToBang(event) {
     }
 
     if (haveToClickSearch()) {
-        //document.getElementById(CONFIG.ID_SEARCH_BUTTON).click();
         document.querySelector(CONFIG.ID_SEARCH_BUTTON).click();
     }
 }
