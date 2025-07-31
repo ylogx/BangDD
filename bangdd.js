@@ -78,6 +78,8 @@ function onExtensionLoading() {
     if (bang_it) {
         insertInCorrectPosition(bang_it);
     }
+    // stopPropagation to prevent triggering parent searchbar which shows search results
+    document.querySelector(CONFIG.ID_SEARCH_BUTTON).addEventListener("click", (event)=>event.stopPropagation());
 }
 
 document.addEventListener('DOMContentLoaded', onExtensionLoading);
