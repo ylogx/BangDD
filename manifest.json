@@ -1,7 +1,7 @@
 {
 
   "description": "Adds a google bang in the duckduckgo search",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "BangDD",
   "version": "0.2.2",
   "homepage_url": "https://github.com/ylogx/BangDD",
