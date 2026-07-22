@@ -20,7 +20,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.duckduckgo.com/*"],
-      "js": ["bangdd.js"]
+      "js": ["dist/bangdd.js"]
     }
   ]
 
