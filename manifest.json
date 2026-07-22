@@ -8,6 +8,11 @@
   "icons": {
     "48": "icons/border-48.png"
   },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{ccbdc4ea-5f5c-452c-9566-d86d080af958}"
+    }
+  },
 
   "content_scripts": [
     {
