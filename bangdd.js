@@ -15,9 +15,22 @@ function haveToClickSearch() {
     return true;
 }
 
+function getSearchForm() {
+    const searchFormInput = document.getElementById(CONFIG.ID_SEARCH_FORM);
+    return searchFormInput ? searchFormInput.closest('form') : null;
+}
+
+function getSubmitButton() {
+    const form = getSearchForm();
+    return form ? form.querySelector('button[type="submit"]') : null;
+}
+
 /** Main Action on button click */
 function onTimeToBang(event) {
     const searchFormInput = document.getElementById(CONFIG.ID_SEARCH_FORM);
+    if (!searchFormInput) {
+        return;
+    }
     const currentSearch = searchFormInput.value;
     const bang = bangToAdd();
 
@@ -26,14 +39,16 @@ function onTimeToBang(event) {
     }
 
     if (haveToClickSearch()) {
-        const form = document.getElementById(CONFIG.ID_SEARCH_FORM).closest('form');
-        const submitButton = form ? form.querySelector('button[type="submit"]') : null;
+        const submitButton = getSubmitButton();
         if (submitButton) {
             submitButton.click();
-        } else if (form && form.requestSubmit) {
-            form.requestSubmit();
-        } else if (form) {
-            form.submit();
+        } else {
+            const form = getSearchForm();
+            if (form && form.requestSubmit) {
+                form.requestSubmit();
+            } else if (form) {
+                form.submit();
+            }
         }
     }
 }
@@ -87,8 +102,7 @@ function onExtensionLoading() {
         insertInCorrectPosition(bang_it);
     }
     // stopPropagation to prevent triggering parent searchbar which shows search results
-    const form = document.getElementById(CONFIG.ID_SEARCH_FORM).closest('form');
-    const submitButton = form ? form.querySelector('button[type="submit"]') : null;
+    const submitButton = getSubmitButton();
     if (submitButton) {
         submitButton.addEventListener("click", (event) => event.stopPropagation());
     }
