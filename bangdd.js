@@ -47,14 +47,15 @@ function createButton() {
     const existingLi = existingLis.length >= 2 ? existingLis[existingLis.length - 2] : existingLis[existingLis.length - 1];
     const existingA = existingLi.querySelector('a');
 
-    const liClassNames = existingLi ? existingLi.className : '';
-    const aClassNames = existingA ? existingA.className : '';
+    const bang_it = document.createElement('li');
+    bang_it.id = 'bang_it';
+    bang_it.className = existingLi ? existingLi.className : '';
 
-    const div = document.createElement('div');
-    div.innerHTML = `<li id="bang_it" class="${liClassNames}">
-                        <a href="#" class="${aClassNames}">Google</a>
-                    </li>`;
-    const bang_it = div.firstChild;
+    const a = document.createElement('a');
+    a.href = '#';
+    a.className = existingA ? existingA.className : '';
+    a.textContent = 'Google';
+    bang_it.appendChild(a);
 
     bang_it.addEventListener("click", (event) => onTimeToBang(event));
     return bang_it;
