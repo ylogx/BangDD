@@ -1,7 +1,6 @@
 // Configuration Object
 const CONFIG = {
     ID_SEARCH_FORM: "search_form_input",
-    ID_SEARCH_BUTTON: "#react-search-form button[type='submit']",
     ID_DUCKBAR: "#react-duckbar ul",
     BANG_TO_ADD: "!g"
 };
@@ -27,7 +26,15 @@ function onTimeToBang(event) {
     }
 
     if (haveToClickSearch()) {
-        document.querySelector(CONFIG.ID_SEARCH_BUTTON).click();
+        const form = document.getElementById(CONFIG.ID_SEARCH_FORM).closest('form');
+        const submitButton = form ? form.querySelector('button[type="submit"]') : null;
+        if (submitButton) {
+            submitButton.click();
+        } else if (form && form.requestSubmit) {
+            form.requestSubmit();
+        } else if (form) {
+            form.submit();
+        }
     }
 }
 
@@ -79,7 +86,11 @@ function onExtensionLoading() {
         insertInCorrectPosition(bang_it);
     }
     // stopPropagation to prevent triggering parent searchbar which shows search results
-    document.querySelector(CONFIG.ID_SEARCH_BUTTON).addEventListener("click", (event)=>event.stopPropagation());
+    const form = document.getElementById(CONFIG.ID_SEARCH_FORM).closest('form');
+    const submitButton = form ? form.querySelector('button[type="submit"]') : null;
+    if (submitButton) {
+        submitButton.addEventListener("click", (event) => event.stopPropagation());
+    }
 }
 
 document.addEventListener('DOMContentLoaded', onExtensionLoading);
