@@ -111,9 +111,27 @@ function onExtensionLoading(): void {
     }
 }
 
+// DuckDuckGo renders its search UI (#react-duckbar) client-side/asynchronously,
+// so the target DOM may not exist yet on DOMContentLoaded. Rather than guessing
+// fixed delays, watch for DOM changes and retry (coalesced to once per frame),
+// which also re-inserts the button if DuckDuckGo's own client-side navigation
+// re-renders the duckbar and wipes it out.
+let ensureButtonScheduled = false;
+function scheduleEnsureButton(): void {
+    if (ensureButtonScheduled) {
+        return;
+    }
+    ensureButtonScheduled = true;
+    requestAnimationFrame(() => {
+        ensureButtonScheduled = false;
+        onExtensionLoading();
+    });
+}
+
+new MutationObserver(scheduleEnsureButton).observe(document.documentElement, {
+    childList: true,
+    subtree: true
+});
+
 document.addEventListener('DOMContentLoaded', onExtensionLoading);
 onExtensionLoading();
-
-// Run onExtensionLoading() after 1 seconds to ensure that the page has loaded completely
-setTimeout(onExtensionLoading, 1000);
-setTimeout(onExtensionLoading, 5000);
