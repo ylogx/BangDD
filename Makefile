@@ -9,7 +9,7 @@ watch:
 	npx tsc --watch
 
 package: build
-	zip -r BangDD-v0.3.0.zip dist manifest.json *.md icons
+	zip -r BangDD-v0.3.1.zip dist manifest.json *.md icons
 
 lint:
 	npx tsc --noEmit
