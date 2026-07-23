@@ -56,7 +56,10 @@ function onTimeToBang(): void {
 function createButton(): HTMLLIElement | null {
     const existingLis = document.querySelectorAll(CONFIG.ID_DUCKBAR + ' li');
     if (existingLis.length === 0) {
-        console.error('No existing li elements found');
+        // Expected on pages DuckDuckGo is about to navigate away from (e.g. a
+        // query that already contains a bang triggers an immediate redirect),
+        // where the duckbar never renders. Not an error, so don't log as one.
+        console.debug('No existing li elements found, skipping button insertion');
         return null;
     }
     const existingLi = existingLis.length >= 2 ? existingLis[existingLis.length - 2] : existingLis[existingLis.length - 1];
