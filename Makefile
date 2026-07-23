@@ -6,6 +6,7 @@ package: build
 
 lint:
 	npx tsc --noEmit
+	npx eslint .
 	web-ext lint
 
 install_deps:
